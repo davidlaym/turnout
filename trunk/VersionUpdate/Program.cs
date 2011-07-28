@@ -26,10 +26,15 @@ namespace TurnOut.VersionUpdate
 
             HandleArguments(CommandLine, ref sProjectPath, ref sWxsFile, ref version, ref incVersion);
             version = WriteVersion(sProjectPath, version, incVersion);
+            WriteWixFile(sWxsFile, version);
+        }
+
+        private static void WriteWixFile(string sWxsFile, Version version)
+        {
             if (sWxsFile.Length > 0)
             {
                 string sText = string.Empty;
-                Regex reg = new Regex(@"(\<\?define ProductVersion = )""(.*)""(\?\>)");                  
+                Regex reg = new Regex(@"(\<\?define ProductVersion = )""(.*)""(\?\>)");
 
                 using (TextReader reader = new StreamReader(sWxsFile))
                 {
@@ -44,7 +49,7 @@ namespace TurnOut.VersionUpdate
                 File.Copy(sWxsFile, sBackup, true);
                 Console.WriteLine("Made a backup @\"{0}\"", sBackup);
 
-                using (TextWriter writer = new StreamWriter(sWxsFile))
+                using (TextWriter writer = new StreamWriter(sWxsFile, false, Encoding.UTF8))
                 {
                     writer.Write(sTemp);
                     writer.Close();
@@ -109,7 +114,7 @@ namespace TurnOut.VersionUpdate
                 File.Copy(sAssemblyInfo, sBackup, true);
                 Console.WriteLine("Made a backup @\"{0}\"", sBackup);
 
-                using (TextWriter writer = new StreamWriter(sAssemblyInfo))
+                using (TextWriter writer = new StreamWriter(sAssemblyInfo, false, Encoding.UTF8))
                 {
                     writer.Write(sTemp);
                     writer.Close();
