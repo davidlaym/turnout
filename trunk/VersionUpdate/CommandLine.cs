@@ -11,20 +11,20 @@ namespace TurnOut.VersionUpdate.Tools
     public class Arguments
     {
         // Variables
-        private StringDictionary Parameters;
+        private StringDictionary _dicParameters;
 
         // Constructor
-        public Arguments(string[] Args)
+        public Arguments(string[] args)
         {
-            Parameters = new StringDictionary();
+            _dicParameters = new StringDictionary();
             Regex Spliter = new Regex(@"^-{1,2}|^/|=|:",
                 RegexOptions.IgnoreCase | RegexOptions.Compiled);
 
             Regex Remover = new Regex(@"^['""]?(.*?)['""]?$",
                 RegexOptions.IgnoreCase | RegexOptions.Compiled);
 
-            string Parameter = null;
-            string[] Parts;
+            string sParameter = null;
+            string[] arParts;
 
             // Valid parameters forms:
             // {-,/,--}param{ ,=,:}((",')value(",'))
@@ -32,29 +32,29 @@ namespace TurnOut.VersionUpdate.Tools
             // -param1 value1 --param2 /param3:"Test-:-work" 
             //   /param4=happy -param5 '--=nice=--'
 
-            foreach (string Txt in Args)
+            foreach (string Txt in args)
             {
                 // Look for new parameters (-,/ or --) and a
                 // possible enclosed value (=,:)
 
-                Parts = Spliter.Split(Txt, 3);
+                arParts = Spliter.Split(Txt, 3);
 
-                switch (Parts.Length)
+                switch (arParts.Length)
                 {
                     // Found a value (for the last parameter
                     // found (space separator))
 
                     case 1:
-                        if (Parameter != null)
+                        if (sParameter != null)
                         {
-                            if (!Parameters.ContainsKey(Parameter))
+                            if (!_dicParameters.ContainsKey(sParameter))
                             {
-                                Parts[0] =
-                                    Remover.Replace(Parts[0], "$1");
+                                arParts[0] =
+                                    Remover.Replace(arParts[0], "$1");
 
-                                Parameters.Add(Parameter, Parts[0]);
+                                _dicParameters.Add(sParameter, arParts[0]);
                             }
-                            Parameter = null;
+                            sParameter = null;
                         }
                         // else Error: no parameter waiting for a value (skipped)
 
@@ -67,12 +67,12 @@ namespace TurnOut.VersionUpdate.Tools
 
                         // With no value, set it to true.
 
-                        if (Parameter != null)
+                        if (sParameter != null)
                         {
-                            if (!Parameters.ContainsKey(Parameter))
-                                Parameters.Add(Parameter, "true");
+                            if (!_dicParameters.ContainsKey(sParameter))
+                                _dicParameters.Add(sParameter, "true");
                         }
-                        Parameter = Parts[1];
+                        sParameter = arParts[1];
                         break;
 
                     // Parameter with enclosed value
@@ -82,44 +82,42 @@ namespace TurnOut.VersionUpdate.Tools
 
                         // With no value, set it to true.
 
-                        if (Parameter != null)
+                        if (sParameter != null)
                         {
-                            if (!Parameters.ContainsKey(Parameter))
-                                Parameters.Add(Parameter, "true");
+                            if (!_dicParameters.ContainsKey(sParameter))
+                                _dicParameters.Add(sParameter, "true");
                         }
 
-                        Parameter = Parts[1];
+                        sParameter = arParts[1];
 
                         // Remove possible enclosing characters (",')
 
-                        if (!Parameters.ContainsKey(Parameter))
+                        if (!_dicParameters.ContainsKey(sParameter))
                         {
-                            Parts[2] = Remover.Replace(Parts[2], "$1");
-                            Parameters.Add(Parameter, Parts[2]);
+                            arParts[2] = Remover.Replace(arParts[2], "$1");
+                            _dicParameters.Add(sParameter, arParts[2]);
                         }
 
-                        Parameter = null;
+                        sParameter = null;
                         break;
                 }
             }
             // In case a parameter is still waiting
 
-            if (Parameter != null)
+            if (sParameter != null)
             {
-                if (!Parameters.ContainsKey(Parameter))
-                    Parameters.Add(Parameter, "true");
+                if (!_dicParameters.ContainsKey(sParameter))
+                    _dicParameters.Add(sParameter, "true");
             }
         }
 
-        // Retrieve a parameter value if it exists 
-
+        // Retrieve a parameter value if it exists
         // (overriding C# indexer property)
-
-        public string this[string Param]
+        public string this[string param]
         {
             get
             {
-                return (Parameters[Param]);
+                return (_dicParameters[param]);
             }
         }
     }

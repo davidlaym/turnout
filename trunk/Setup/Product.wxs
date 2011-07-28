@@ -1,14 +1,15 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
 <Wix xmlns="http://schemas.microsoft.com/wix/2006/wi">
   <?define ProductName = "TurnOut.NET"?>
-  <?define ProductVersion = "1.0.0.2"?>
+  <?define ProductVersion = "1.0.0.3"?>
   <?define Manufacturer = "www.daemonized.de"?>
   <?define ProgID = "Daemonized.TurnOut.Url"?>
 
   <?define SourcePath = "..\TurnOut.NET\bin\Release"?>
-<!--  <?define ProductCode = "10ed8162-f4ba-445e-8d9b-dcec717a74ca"?>{94F9D973-C079-4569-BB4D-FFFCFC93C9C9}-->
-  <?define ProductCode = "{5FA7409C-76BA-482B-AA70-6953C5FAFABF}"?><!--Change on new major upgrade-->
-  <?define UpgradeCode = "{43805536-46DA-4021-AEE8-72F3B155FDB1}"?><!--Don't change, it connects the different releases-->
+  <!--Change on new major upgrade-->
+  <?define ProductCode = "{94F9D973-C079-4569-BB4D-FFFCFC93C9C9}"?>
+  <!--Don't change, it connects the different releases-->
+  <?define UpgradeCode = "{43805536-46DA-4021-AEE8-72F3B155FDB1}"?>
   <?define PackageCode = "{????????-????-????-????-????????????}"?>
 
   <Product

@@ -11,13 +11,14 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using System.Windows.Forms;
+using System.Globalization;
 
 namespace Daemonized.TurnOut
 {
     /// <summary>
     /// Interaktionslogik für DlgSettings.xaml
     /// </summary>
-    public partial class DlgSettings : Window
+    public sealed partial class DlgSettings : Window
     {
         private Microsoft.Win32.OpenFileDialog _dlg = new Microsoft.Win32.OpenFileDialog();
         public DlgSettings()
@@ -66,9 +67,9 @@ namespace Daemonized.TurnOut
             System.Windows.Controls.Button btn = (System.Windows.Controls.Button)e.Source;
             _dlg.ShowDialog();
             if (_dlg.FileName.Length > 0)
-                if (btn.Name.EndsWith("1"))
+                if (btn.Name.EndsWith("1", false, CultureInfo.InvariantCulture))
                     txtBrowser1.Text = _dlg.FileName;
-                else if (btn.Name.EndsWith("2"))
+                else if (btn.Name.EndsWith("2", false, CultureInfo.InvariantCulture))
                     txtBrowser2.Text = _dlg.FileName;
                 else
                     txtBrowser3.Text = _dlg.FileName;

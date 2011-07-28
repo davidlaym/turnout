@@ -7,11 +7,11 @@ using System.Runtime.InteropServices;
 
 namespace Daemonized.TurnOut
 {
-    [ProgId("TurnOut.NET.Url")]
-    public class StartupClass
+    [ProgId("TurnOut.Net.Url")]
+    public sealed class StartupClass
     {
         
-        public StartupClass() { }
+        private StartupClass() { }
         [STAThread]
         /// 
         public static void Main(string[] arguments)

@@ -16,13 +16,14 @@ using System.IO;
 using System.Windows.Media.Effects;
 using System.Threading;
 using System.Windows.Threading;
+using System.Globalization;
 
 namespace Daemonized.TurnOut
 {
     /// <summary>
     /// Interaktionslogik für MainWindow.xaml
     /// </summary>
-    public partial class MainWindow : Window
+    public sealed partial class MainWindow : Window
     {
         private bool _bIconHit = false;
         private bool _bCtrlKey = false;
@@ -41,7 +42,7 @@ namespace Daemonized.TurnOut
                     browser.Value.Arguments = _url.ToString();
 
                 if (_url.ToString().Length > 93)
-                    txtUrl.Text = string.Format("{0} (...)", _url.ToString().Substring(0, 89));
+                    txtUrl.Text = string.Format(CultureInfo.InvariantCulture, "{0} (...)", _url.ToString().Substring(0, 89));
                 else
                     txtUrl.Text = _url.ToString();
             }
@@ -94,12 +95,8 @@ namespace Daemonized.TurnOut
             }
             else
             {
-                try
-                {
-                    SingleInstance.PassArgumentsToFirstInstance(_url.ToString());
-                }
-                catch { }
-                
+                SingleInstance.PassArgumentsToFirstInstance(_url.ToString());
+
                 return false;
             }
         }
@@ -164,8 +161,9 @@ namespace Daemonized.TurnOut
                 
                 return true;
             }
-            catch
+            catch(Exception ex)
             {
+                MessageBox.Show(ex.Message, "Error!", MessageBoxButton.OK, MessageBoxImage.Error);
                 this.WindowState = System.Windows.WindowState.Normal;
                 return false;
             }
