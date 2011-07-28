@@ -1,14 +1,14 @@
-<?xml version="1.0" encoding="UTF-8"?>
+﻿<?xml version="1.0" encoding="UTF-8"?>
 <Wix xmlns="http://schemas.microsoft.com/wix/2006/wi">
   <?define ProductName = "TurnOut.NET"?>
-  <?define ProductVersion = "1.0.0.1"?>
+  <?define ProductVersion = "1.0.0.2"?>
   <?define Manufacturer = "www.daemonized.de"?>
   <?define ProgID = "Daemonized.TurnOut.Url"?>
 
   <?define SourcePath = "..\TurnOut.NET\bin\Release"?>
-<!--  <?define ProductCode = "10ed8162-f4ba-445e-8d9b-dcec717a74ca"?>{5FA7409C-76BA-482B-AA70-6953C5FAFABF}-->
-  <?define ProductCode = "{94F9D973-C079-4569-BB4D-FFFCFC93C9C9}"?>
-  <?define UpgradeCode = "{43805536-46DA-4021-AEE8-72F3B155FDB1}"?>
+<!--  <?define ProductCode = "10ed8162-f4ba-445e-8d9b-dcec717a74ca"?>{94F9D973-C079-4569-BB4D-FFFCFC93C9C9}-->
+  <?define ProductCode = "{5FA7409C-76BA-482B-AA70-6953C5FAFABF}"?><!--Change on new major upgrade-->
+  <?define UpgradeCode = "{43805536-46DA-4021-AEE8-72F3B155FDB1}"?><!--Don't change, it connects the different releases-->
   <?define PackageCode = "{????????-????-????-????-????????????}"?>
 
   <Product
@@ -20,9 +20,8 @@
     Manufacturer="$(var.Manufacturer)">
     
     <Package Id="$(var.PackageCode)" InstallPrivileges="elevated" InstallScope="perMachine" Platform="x86" Description="$(var.ProductName)" InstallerVersion="200" Compressed="yes" />
-    <!--<MajorUpgrade AllowDowngrades="no" Disallow="no" MigrateFeatures="yes" DowngradeErrorMessage="No Downgrades possible!" />-->
+    <MajorUpgrade AllowDowngrades="no" Disallow="no" MigrateFeatures="yes" DowngradeErrorMessage="No Downgrades possible!" />
     <Condition Message='You need to be an administrator to install this product.'>Privileged</Condition>
-    <CustomAction Id="SaveTargetDir" Property="ARPINSTALLLOCATION" Value="[INSTALLDIR]" />
 
     <Media Id="1" Cabinet="media.cab" EmbedCab="yes" CompressionLevel="high" VolumeLabel="Media" />
 
@@ -111,13 +110,9 @@
     <!-- Sequences -->
     <InstallExecuteSequence>
       <Custom Action="PreventDowngrading" After="FindRelatedProducts">NEWPRODUCTFOUND</Custom>
-      <RemoveExistingProducts After="InstallFinalize" />
+<!--      <RemoveExistingProducts After="InstallFinalize" />-->
     </InstallExecuteSequence>
 
-    <InstallUISequence>
-      <Custom Action="PreventDowngrading" After="FindRelatedProducts">NEWPRODUCTFOUND</Custom>
-    </InstallUISequence>
-    
     <WixVariable Id="WixUIBannerBmp" Value="banner.bmp" />
     <WixVariable Id="WixUIDialogBmp" Value="dlg.bmp" />
     <WixVariable Id="WixUILicenseRtf" Value="license.rtf" />
@@ -125,12 +120,10 @@
     <Property Id="WIXUI_INSTALLDIR" Value="INSTALLLOCATION" />
     <UIRef Id="WixUI_FeatureTree" />
 
-    <InstallExecuteSequence>
-      <Custom Action="SaveTargetDir" After="InstallValidate">
-        NOT
-        Installed
-      </Custom>
-    </InstallExecuteSequence>
+    <InstallUISequence>
+      <Custom Action="PreventDowngrading" After="FindRelatedProducts">NEWPRODUCTFOUND</Custom>
+    </InstallUISequence>
 
   </Product>
+  
 </Wix>
