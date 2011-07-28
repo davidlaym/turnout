@@ -1,0 +1,421 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<FxCopProject Version="10.0" Name="TurnOut.NET">
+ <ProjectOptions>
+  <SharedProject>True</SharedProject>
+  <Stylesheet Apply="False">$(FxCopDir)\Xml\FxCopReport.xsl</Stylesheet>
+  <SaveMessages>
+   <Project Status="Active, Excluded" NewOnly="False" />
+   <Report Status="Active" NewOnly="False" />
+  </SaveMessages>
+  <ProjectFile Compress="True" DefaultTargetCheck="True" DefaultRuleCheck="True" SaveByRuleGroup="" Deterministic="True" />
+  <EnableMultithreadedLoad>True</EnableMultithreadedLoad>
+  <EnableMultithreadedAnalysis>True</EnableMultithreadedAnalysis>
+  <SourceLookup>True</SourceLookup>
+  <AnalysisExceptionsThreshold>10</AnalysisExceptionsThreshold>
+  <RuleExceptionsThreshold>1</RuleExceptionsThreshold>
+  <Spelling Locale="en-US" />
+  <OverrideRuleVisibilities>False</OverrideRuleVisibilities>
+  <CustomDictionaries SearchFxCopDir="True" SearchUserProfile="True" SearchProjectDir="True" />
+  <SearchGlobalAssemblyCache>False</SearchGlobalAssemblyCache>
+  <DeadlockDetectionTimeout>120</DeadlockDetectionTimeout>
+  <IgnoreGeneratedCode>False</IgnoreGeneratedCode>
+ </ProjectOptions>
+ <Targets>
+  <Target Name="$(ProjectDir)/TurnOut.NET/bin/Release/TurnOut.NET.exe" Analyze="True" AnalyzeAllChildren="False">
+   <Modules AnalyzeAllChildren="False">
+    <Module Name="turnout.net.exe" Analyze="True" AnalyzeAllChildren="False">
+     <Namespaces AnalyzeAllChildren="False">
+      <Namespace Name="Daemonized.TurnOut" Analyze="True" AnalyzeAllChildren="True" />
+      <Namespace Name="Daemonized.TurnOut.Properties" Analyze="True" AnalyzeAllChildren="True" />
+     </Namespaces>
+     <Resources AnalyzeAllChildren="False" />
+    </Module>
+   </Modules>
+  </Target>
+  <Target Name="$(ProjectDir)/VersionUpdate/bin/Release/VersionUpdate.exe" Analyze="True" AnalyzeAllChildren="True" />
+ </Targets>
+ <Rules>
+  <RuleFiles>
+   <RuleFile Name="$(FxCopDir)\Rules\DesignRules.dll" Enabled="True" AllRulesEnabled="True" />
+   <RuleFile Name="$(FxCopDir)\Rules\GlobalizationRules.dll" Enabled="True" AllRulesEnabled="True" />
+   <RuleFile Name="$(FxCopDir)\Rules\InteroperabilityRules.dll" Enabled="True" AllRulesEnabled="True" />
+   <RuleFile Name="$(FxCopDir)\Rules\MobilityRules.dll" Enabled="True" AllRulesEnabled="True" />
+   <RuleFile Name="$(FxCopDir)\Rules\NamingRules.dll" Enabled="True" AllRulesEnabled="True" />
+   <RuleFile Name="$(FxCopDir)\Rules\PerformanceRules.dll" Enabled="True" AllRulesEnabled="True" />
+   <RuleFile Name="$(FxCopDir)\Rules\PortabilityRules.dll" Enabled="True" AllRulesEnabled="True" />
+   <RuleFile Name="$(FxCopDir)\Rules\SecurityRules.dll" Enabled="True" AllRulesEnabled="True" />
+   <RuleFile Name="$(FxCopDir)\Rules\SecurityTransparencyRules.dll" Enabled="True" AllRulesEnabled="True" />
+   <RuleFile Name="$(FxCopDir)\Rules\UsageRules.dll" Enabled="True" AllRulesEnabled="True" />
+  </RuleFiles>
+  <Groups />
+  <Settings />
+ </Rules>
+ <FxCopReport Version="10.0">
+  <Namespaces>
+   <Namespace Name="Daemonized.TurnOut">
+    <Messages>
+     <Message Id="TurnOut" TypeName="CompoundWordsShouldBeCasedCorrectly" Category="Microsoft.Naming" CheckId="CA1702" Created="2011-07-28 14:33:08Z">
+      <Issue Name="NamespaceShouldBeDiscreteTerm">
+       <Item>TurnOut</Item>
+       <Item>Daemonized.TurnOut</Item>
+       <Item>Turnout</Item>
+      </Issue>
+     </Message>
+     <Message Id="Daemonized" TypeName="IdentifiersShouldBeSpelledCorrectly" Category="Microsoft.Naming" CheckId="CA1704" Created="2011-07-28 14:33:08Z">
+      <Issue Name="Namespace">
+       <Item>Daemonized</Item>
+       <Item>Daemonized.TurnOut</Item>
+      </Issue>
+     </Message>
+    </Messages>
+   </Namespace>
+   <Namespace Name="TurnOut.VersionUpdate.Tools">
+    <Messages>
+     <Message Id="TurnOut" TypeName="CompoundWordsShouldBeCasedCorrectly" Category="Microsoft.Naming" CheckId="CA1702" Created="2011-07-28 14:33:08Z">
+      <Issue Name="NamespaceShouldBeDiscreteTerm">
+       <Item>TurnOut</Item>
+       <Item>TurnOut.VersionUpdate.Tools</Item>
+       <Item>Turnout</Item>
+      </Issue>
+     </Message>
+    </Messages>
+   </Namespace>
+  </Namespaces>
+  <Targets>
+   <Target Name="$(ProjectDir)/TurnOut.NET/bin/Release/TurnOut.NET.exe">
+    <Modules>
+     <Module Name="turnout.net.exe">
+      <Messages>
+       <Message Id="TurnOut" TypeName="CompoundWordsShouldBeCasedCorrectly" Category="Microsoft.Naming" CheckId="CA1702" Created="2011-07-28 14:33:08Z">
+        <Issue Name="AssemblyShouldBeDiscreteTerm">
+         <Item>TurnOut</Item>
+         <Item>'TurnOut.NET.exe'</Item>
+         <Item>Turnout</Item>
+        </Issue>
+       </Message>
+      </Messages>
+      <Namespaces>
+       <Namespace Name="Daemonized.TurnOut">
+        <Types>
+         <Type Name="DlgSettings">
+          <Messages>
+           <Message Id="Dlg" TypeName="IdentifiersShouldBeSpelledCorrectly" Category="Microsoft.Naming" CheckId="CA1704" Created="2011-07-28 14:33:08Z">
+            <Issue Name="Type">
+             <Item>Dlg</Item>
+             <Item>'DlgSettings'</Item>
+            </Issue>
+           </Message>
+          </Messages>
+          <Members>
+           <Member Name="#btnBrowse_Click(System.Object,System.Windows.RoutedEventArgs)">
+            <Messages>
+             <Message Id="System.String.EndsWith(System.String,System.Boolean,System.Globalization.CultureInfo)" TypeName="UseOrdinalStringComparison" Category="Microsoft.Globalization" CheckId="CA1309" Created="2011-07-28 14:06:37Z">
+              <Issue Name="StringComparison">
+               <Item>'DlgSettings.btnBrowse_Click(object, RoutedEventArgs)'</Item>
+               <Item>CultureInfo.InvariantCulture</Item>
+               <Item>'string.EndsWith(string, bool, CultureInfo)'</Item>
+              </Issue>
+              <Issue Name="StringComparison">
+               <Item>'DlgSettings.btnBrowse_Click(object, RoutedEventArgs)'</Item>
+               <Item>CultureInfo.InvariantCulture</Item>
+               <Item>'string.EndsWith(string, bool, CultureInfo)'</Item>
+              </Issue>
+             </Message>
+            </Messages>
+           </Member>
+           <Member Name="#groupBox1">
+            <Messages>
+             <Message TypeName="AvoidUnusedPrivateFields" Category="Microsoft.Performance" CheckId="CA1823" Status="Excluded" Created="2011-07-28 13:33:14Z">
+              <Issue>
+               <Item>'DlgSettings.groupBox1'</Item>
+              </Issue>
+              <Notes>
+               <User Name="Sven.Ruetz">
+                <Note Id="2" />
+               </User>
+              </Notes>
+             </Message>
+            </Messages>
+           </Member>
+           <Member Name="#groupBox2">
+            <Messages>
+             <Message TypeName="AvoidUnusedPrivateFields" Category="Microsoft.Performance" CheckId="CA1823" Status="Excluded" Created="2011-07-28 13:33:14Z">
+              <Issue>
+               <Item>'DlgSettings.groupBox2'</Item>
+              </Issue>
+              <Notes>
+               <User Name="Sven.Ruetz">
+                <Note Id="2" />
+               </User>
+              </Notes>
+             </Message>
+            </Messages>
+           </Member>
+           <Member Name="#groupBox3">
+            <Messages>
+             <Message TypeName="AvoidUnusedPrivateFields" Category="Microsoft.Performance" CheckId="CA1823" Status="Excluded" Created="2011-07-28 13:33:14Z">
+              <Issue>
+               <Item>'DlgSettings.groupBox3'</Item>
+              </Issue>
+              <Notes>
+               <User Name="Sven.Ruetz">
+                <Note Id="2" />
+               </User>
+              </Notes>
+             </Message>
+            </Messages>
+           </Member>
+           <Member Name="#System.Windows.Markup.IComponentConnector.Connect(System.Int32,System.Object)">
+            <Messages>
+             <Message TypeName="DoNotCastUnnecessarily" Category="Microsoft.Performance" CheckId="CA1800" Created="2011-07-28 13:33:14Z">
+              <Issue Name="Parameter">
+               <Item>'target'</Item>
+               <Item>'Button'</Item>
+               <Item>'DlgSettings.IComponentConnector.Connect(int, object)'</Item>
+               <Item>castclass</Item>
+              </Issue>
+              <Issue Name="Parameter">
+               <Item>'target'</Item>
+               <Item>'Button'</Item>
+               <Item>'DlgSettings.IComponentConnector.Connect(int, object)'</Item>
+               <Item>castclass</Item>
+              </Issue>
+              <Issue Name="Parameter">
+               <Item>'target'</Item>
+               <Item>'Button'</Item>
+               <Item>'DlgSettings.IComponentConnector.Connect(int, object)'</Item>
+               <Item>castclass</Item>
+              </Issue>
+              <Issue Name="Parameter">
+               <Item>'target'</Item>
+               <Item>'Button'</Item>
+               <Item>'DlgSettings.IComponentConnector.Connect(int, object)'</Item>
+               <Item>castclass</Item>
+              </Issue>
+              <Issue Name="Parameter">
+               <Item>'target'</Item>
+               <Item>'GroupBox'</Item>
+               <Item>'DlgSettings.IComponentConnector.Connect(int, object)'</Item>
+               <Item>castclass</Item>
+              </Issue>
+              <Issue Name="Parameter">
+               <Item>'target'</Item>
+               <Item>'GroupBox'</Item>
+               <Item>'DlgSettings.IComponentConnector.Connect(int, object)'</Item>
+               <Item>castclass</Item>
+              </Issue>
+              <Issue Name="Parameter">
+               <Item>'target'</Item>
+               <Item>'TextBox'</Item>
+               <Item>'DlgSettings.IComponentConnector.Connect(int, object)'</Item>
+               <Item>castclass</Item>
+              </Issue>
+              <Issue Name="Parameter">
+               <Item>'target'</Item>
+               <Item>'TextBox'</Item>
+               <Item>'DlgSettings.IComponentConnector.Connect(int, object)'</Item>
+               <Item>castclass</Item>
+              </Issue>
+             </Message>
+            </Messages>
+           </Member>
+           <Member Name="#tabControl1">
+            <Messages>
+             <Message TypeName="AvoidUnusedPrivateFields" Category="Microsoft.Performance" CheckId="CA1823" Status="Excluded" Created="2011-07-28 13:33:14Z">
+              <Issue>
+               <Item>'DlgSettings.tabControl1'</Item>
+              </Issue>
+              <Notes>
+               <User Name="Sven.Ruetz">
+                <Note Id="2" />
+               </User>
+              </Notes>
+             </Message>
+            </Messages>
+           </Member>
+           <Member Name="#tabItem1">
+            <Messages>
+             <Message TypeName="AvoidUnusedPrivateFields" Category="Microsoft.Performance" CheckId="CA1823" Status="Excluded" Created="2011-07-28 13:33:14Z">
+              <Issue>
+               <Item>'DlgSettings.tabItem1'</Item>
+              </Issue>
+              <Notes>
+               <User Name="Sven.Ruetz">
+                <Note Id="2" />
+               </User>
+              </Notes>
+             </Message>
+            </Messages>
+           </Member>
+          </Members>
+         </Type>
+         <Type Name="MainWindow">
+          <Messages>
+           <Message TypeName="TypesThatOwnDisposableFieldsShouldBeDisposable" Category="Microsoft.Design" CheckId="CA1001" Created="2011-07-28 13:33:14Z" FixCategory="DependsOnFix">
+            <Issue Name="DependsOnFix">
+             <Item>'MainWindow'</Item>
+             <Item>'NotifyIcon', 'SingleInstance'</Item>
+            </Issue>
+           </Message>
+          </Messages>
+          <Members>
+           <Member Name="#grid">
+            <Messages>
+             <Message TypeName="AvoidUnusedPrivateFields" Category="Microsoft.Performance" CheckId="CA1823" Status="Excluded" Created="2011-07-28 13:33:14Z">
+              <Issue>
+               <Item>'MainWindow.grid'</Item>
+              </Issue>
+              <Notes>
+               <User Name="Sven.Ruetz">
+                <Note Id="1" />
+               </User>
+              </Notes>
+             </Message>
+            </Messages>
+           </Member>
+           <Member Name="#StartUri(System.String)">
+            <Messages>
+             <Message TypeName="DoNotCatchGeneralExceptionTypes" Category="Microsoft.Design" CheckId="CA1031" Status="Excluded" Created="2011-07-28 13:33:14Z">
+              <Issue>
+               <Item>'MainWindow.StartUri(string)'</Item>
+               <Item>'Exception'</Item>
+              </Issue>
+              <Notes>
+               <User Name="Sven.Ruetz">
+                <Note Id="0" />
+               </User>
+              </Notes>
+             </Message>
+            </Messages>
+           </Member>
+           <Member Name="#System.Windows.Markup.IComponentConnector.Connect(System.Int32,System.Object)">
+            <Messages>
+             <Message TypeName="DoNotCastUnnecessarily" Category="Microsoft.Performance" CheckId="CA1800" Created="2011-07-28 13:33:14Z">
+              <Issue Name="Parameter">
+               <Item>'target'</Item>
+               <Item>'Image'</Item>
+               <Item>'MainWindow.IComponentConnector.Connect(int, object)'</Item>
+               <Item>castclass</Item>
+              </Issue>
+              <Issue Name="Parameter">
+               <Item>'target'</Item>
+               <Item>'Image'</Item>
+               <Item>'MainWindow.IComponentConnector.Connect(int, object)'</Item>
+               <Item>castclass</Item>
+              </Issue>
+              <Issue Name="Parameter">
+               <Item>'target'</Item>
+               <Item>'Image'</Item>
+               <Item>'MainWindow.IComponentConnector.Connect(int, object)'</Item>
+               <Item>castclass</Item>
+              </Issue>
+              <Issue Name="Parameter">
+               <Item>'target'</Item>
+               <Item>'MainWindow'</Item>
+               <Item>'MainWindow.IComponentConnector.Connect(int, object)'</Item>
+               <Item>castclass</Item>
+              </Issue>
+              <Issue Name="Parameter">
+               <Item>'target'</Item>
+               <Item>'MainWindow'</Item>
+               <Item>'MainWindow.IComponentConnector.Connect(int, object)'</Item>
+               <Item>castclass</Item>
+              </Issue>
+              <Issue Name="Parameter">
+               <Item>'target'</Item>
+               <Item>'MainWindow'</Item>
+               <Item>'MainWindow.IComponentConnector.Connect(int, object)'</Item>
+               <Item>castclass</Item>
+              </Issue>
+              <Issue Name="Parameter">
+               <Item>'target'</Item>
+               <Item>'MainWindow'</Item>
+               <Item>'MainWindow.IComponentConnector.Connect(int, object)'</Item>
+               <Item>castclass</Item>
+              </Issue>
+              <Issue Name="Parameter">
+               <Item>'target'</Item>
+               <Item>'MenuItem'</Item>
+               <Item>'MainWindow.IComponentConnector.Connect(int, object)'</Item>
+               <Item>castclass</Item>
+              </Issue>
+              <Issue Name="Parameter">
+               <Item>'target'</Item>
+               <Item>'MenuItem'</Item>
+               <Item>'MainWindow.IComponentConnector.Connect(int, object)'</Item>
+               <Item>castclass</Item>
+              </Issue>
+             </Message>
+            </Messages>
+           </Member>
+          </Members>
+         </Type>
+        </Types>
+       </Namespace>
+      </Namespaces>
+     </Module>
+    </Modules>
+   </Target>
+   <Target Name="$(ProjectDir)/VersionUpdate/bin/Release/VersionUpdate.exe">
+    <Modules>
+     <Module Name="versionupdate.exe">
+      <Namespaces>
+       <Namespace Name="TurnOut.VersionUpdate.Tools">
+        <Types>
+         <Type Name="Arguments">
+          <Members>
+           <Member Name="#Item[System.String]">
+            <Messages>
+             <Message Id="param" TypeName="IdentifiersShouldBeSpelledCorrectly" Category="Microsoft.Naming" CheckId="CA1704" Created="2011-07-28 14:33:08Z">
+              <Issue Name="MemberParameter">
+               <Item>'Arguments.this[string]'</Item>
+               <Item>param</Item>
+               <Item>'param'</Item>
+              </Issue>
+             </Message>
+            </Messages>
+           </Member>
+          </Members>
+         </Type>
+        </Types>
+       </Namespace>
+      </Namespaces>
+     </Module>
+    </Modules>
+   </Target>
+  </Targets>
+  <Notes>
+   <User Name="Sven.Ruetz">
+    <Note Id="0" Modified="2011-07-28 14:10:55Z">No need for specific exception handling</Note>
+    <Note Id="1" Modified="2011-07-28 14:11:14Z">wpf field, not unused</Note>
+    <Note Id="2" Modified="2011-07-28 14:11:22Z">wpf field, not unused</Note>
+   </User>
+  </Notes>
+  <Rules>
+   <Rule TypeName="AvoidUnusedPrivateFields" Category="Microsoft.Performance" CheckId="CA1823">
+    <Resolution Name="Default">It appears that field {0} is never used or is only ever assigned to. Use this field or remove it.</Resolution>
+   </Rule>
+   <Rule TypeName="CompoundWordsShouldBeCasedCorrectly" Category="Microsoft.Naming" CheckId="CA1702">
+    <Resolution Name="AssemblyShouldBeDiscreteTerm">The compound word '{0}' in assembly name {1} exists as a discrete term. If your usage is intended to be single word, case it as '{2}'.</Resolution>
+    <Resolution Name="NamespaceShouldBeDiscreteTerm">The compound word '{0}' in namespace name '{1}' exists as a discrete term. If your usage is intended to be single word, case it as '{2}'.</Resolution>
+   </Rule>
+   <Rule TypeName="DoNotCastUnnecessarily" Category="Microsoft.Performance" CheckId="CA1800">
+    <Resolution Name="Parameter">{0}, a parameter, is cast to type {1} multiple times in method {2}. Cache the result of the 'as' operator or direct cast in order to eliminate the redundant {3} instruction.</Resolution>
+   </Rule>
+   <Rule TypeName="DoNotCatchGeneralExceptionTypes" Category="Microsoft.Design" CheckId="CA1031">
+    <Resolution Name="Default">Modify {0} to catch a more specific exception than {1} or rethrow the exception.</Resolution>
+   </Rule>
+   <Rule TypeName="IdentifiersShouldBeSpelledCorrectly" Category="Microsoft.Naming" CheckId="CA1704">
+    <Resolution Name="MemberParameter">In method {0}, correct the spelling of '{1}' in parameter name {2} or remove it entirely if it represents any sort of Hungarian notation.</Resolution>
+    <Resolution Name="Namespace">Correct the spelling of '{0}' in namespace name '{1}'.</Resolution>
+    <Resolution Name="Type">Correct the spelling of '{0}' in type name {1}.</Resolution>
+   </Rule>
+   <Rule TypeName="TypesThatOwnDisposableFieldsShouldBeDisposable" Category="Microsoft.Design" CheckId="CA1001">
+    <Resolution Name="DependsOnFix">Implement IDisposable on {0} because it creates members of the following IDisposable types: {1}. If {0} has previously shipped, adding new members that implement IDisposable to this type is considered a breaking change to existing consumers.</Resolution>
+   </Rule>
+   <Rule TypeName="UseOrdinalStringComparison" Category="Microsoft.Globalization" CheckId="CA1309">
+    <Resolution Name="StringComparison">{0} passes '{1}' as the 'StringComparison' parameter to {2}. To perform a non-linguistic comparison, specify 'StringComparison.Ordinal' or 'StringComparison.OrdinalIgnoreCase' instead.</Resolution>
+   </Rule>
+  </Rules>
+ </FxCopReport>
+</FxCopProject>

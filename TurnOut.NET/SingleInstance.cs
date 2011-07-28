@@ -19,7 +19,7 @@ namespace Daemonized.TurnOut
         public TEventDataType Data { get; set; }
     }
 
-    public class SingleInstance : IDisposable
+    public class SingleInstance : System.IDisposable
     {
         private readonly bool ownsMutex;
         private Mutex mutex;
@@ -59,9 +59,15 @@ namespace Daemonized.TurnOut
         /// </summary>
         public void Dispose()
         {
+            Dispose(true);
+            GC.SuppressFinalize(this);
+        }
+        protected virtual void Dispose(bool dummy)
+        {
             if (mutex != null && ownsMutex)
             {
                 mutex.ReleaseMutex();
+                mutex.Dispose();
                 mutex = null;
             }
         }

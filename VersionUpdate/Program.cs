@@ -5,6 +5,7 @@ using System.Text;
 using TurnOut.VersionUpdate.Tools;
 using System.IO;
 using System.Text.RegularExpressions;
+using System.Globalization;
 
 namespace TurnOut.VersionUpdate
 {
@@ -42,10 +43,10 @@ namespace TurnOut.VersionUpdate
                     reader.Close();
                 }
 
-                string sTemp = reg.Replace(sText, string.Format("$1\"{0}\"$3", version.ToString()));
+                string sTemp = reg.Replace(sText, string.Format(CultureInfo.InvariantCulture, "$1\"{0}\"$3", version.ToString()));
 
                 //make a backup
-                string sBackup = string.Format("{0}\\{1}", Path.GetTempPath(), Path.GetFileName(sWxsFile));
+                string sBackup = string.Format(CultureInfo.InvariantCulture, "{0}\\{1}", Path.GetTempPath(), Path.GetFileName(sWxsFile));
                 File.Copy(sWxsFile, sBackup, true);
                 Console.WriteLine("Made a backup @\"{0}\"", sBackup);
 
@@ -59,7 +60,7 @@ namespace TurnOut.VersionUpdate
 
         private static Version WriteVersion(string sProjectPath, Version version, Increment incVersion)
         {
-            string sAssemblyInfo = string.Format("{0}\\Properties\\AssemblyInfo.cs", sProjectPath);
+            string sAssemblyInfo = string.Format(CultureInfo.InvariantCulture, "{0}\\Properties\\AssemblyInfo.cs", sProjectPath);
             if (File.Exists(sAssemblyInfo))
             {
                 Regex reg = new Regex(@"(\[assembly: Assembly.*Version\()""(.*)""(\)])");
@@ -107,10 +108,10 @@ namespace TurnOut.VersionUpdate
                     }
                 }
 
-                string sTemp = reg.Replace(sText, string.Format("$1\"{0}\"$3", version.ToString()));
+                string sTemp = reg.Replace(sText, string.Format(CultureInfo.InvariantCulture, "$1\"{0}\"$3", version.ToString()));
 
                 //make a backup
-                string sBackup = string.Format("{0}\\{1}", Path.GetTempPath(), Path.GetFileName(sAssemblyInfo));
+                string sBackup = string.Format(CultureInfo.InvariantCulture, "{0}\\{1}", Path.GetTempPath(), Path.GetFileName(sAssemblyInfo));
                 File.Copy(sAssemblyInfo, sBackup, true);
                 Console.WriteLine("Made a backup @\"{0}\"", sBackup);
 
@@ -175,7 +176,7 @@ namespace TurnOut.VersionUpdate
 
             if (CommandLine["version"] != null)
                 try { vGivenVersion = Version.Parse(CommandLine["version"]); }
-                catch
+                catch(FormatException)
                 {
                     vGivenVersion = null;
                     Console.Error.WriteLine("There was an error parsing the given version. Use the foloowing format: \"1.0.0.1\".");
@@ -185,18 +186,21 @@ namespace TurnOut.VersionUpdate
         
         private static Increment GetInc(string sArgument)
         {
-            switch (sArgument.ToLowerInvariant())
+            switch (sArgument.ToUpperInvariant())
             {
-                case "major":
+                case "MAJOR":
                     return Increment.Major;
-                case "minor":
+                case "MINOR":
                     return Increment.Minor;
-                case "release":
+                case "RELEASE":
                     return Increment.Release;
-                case "built":
+                case "BUILT":
                     return Increment.Build;
                 default:
-                    throw new ArgumentException();
+                    throw new ArgumentException(
+                        string.Format(CultureInfo.InvariantCulture,
+                        "{0} is not a valid increment type. Try \"major\", \"minor\", \"release\" or \"built\".", sArgument)
+                        );
             }
         }
 
