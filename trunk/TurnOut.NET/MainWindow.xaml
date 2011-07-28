@@ -1,0 +1,34 @@
+﻿<Window x:Class="Daemonized.TurnOut.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="MainWindow" mc:Ignorable="d" xmlns:d="http://schemas.microsoft.com/expression/blend/2008" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" Height="280" Width="623" Topmost="True" WindowStartupLocation="CenterScreen" WindowStyle="None" AllowsTransparency="True" Opacity="10" ResizeMode="NoResize" DragEnter="grid_DragEnter" Drop="grid_Drop" AllowDrop="True" HorizontalAlignment="Center" VerticalAlignment="Center" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" ShowInTaskbar="False" MouseLeftButtonDown="Window_MouseLeftButtonDown" KeyUp="Window_KeyUp" KeyDown="Window_KeyDown">
+    <Window.ContextMenu>
+        <ContextMenu HasDropShadow="True">
+            <MenuItem Header="Settings" Name="settings" InputGestureText="Ctrl+S" IsEnabled="True" Click="MenuItem_Click">
+                <MenuItem.Icon>
+                    <Image Source="/TurnOut.NET;component/src/cx_settings.png" />
+                </MenuItem.Icon>
+            </MenuItem>
+            <MenuItem Header="Minimize to tray" Name="minimize" InputGestureText="Ctrl+M" IsEnabled="True" Click="MenuItem_Click">
+                <MenuItem.Icon>
+                    <Image Source="/TurnOut.NET;component/src/cx_minimize.png" />
+                </MenuItem.Icon>
+            </MenuItem>
+            <MenuItem Header="Exit" Name="exit" InputGestureText="Ctrl+Q" Click="MenuItem_Click" IsEnabled="True">
+                <MenuItem.Icon>
+                    <Image Source="/TurnOut.NET;component/src/cx_exit.png" />
+                </MenuItem.Icon>
+            </MenuItem>
+        </ContextMenu>
+    </Window.ContextMenu>
+    <Window.Background>
+        <ImageBrush ImageSource="/TurnOut.NET;component/src/form.png" Stretch="None" TileMode="None" />
+    </Window.Background>
+    <Grid Height="222" Name="grid" Width="597" AllowDrop="True" HorizontalAlignment="Center" VerticalAlignment="Center">
+        <Image Height="128" HorizontalAlignment="Left" Margin="41,31,0,0" Name="imgFirefox" Stretch="Fill" VerticalAlignment="Top" Width="128" Source="/TurnOut.NET;component/src/firefox.png" Cursor="Hand" MouseLeftButtonUp="IconsMouseLeftButtonUp" Tag="001" MouseEnter="imgFirefox_MouseEnter" MouseLeave="imgFirefox_MouseLeave" />
+        <Image Height="128" HorizontalAlignment="Left" Margin="220,31,0,0" Name="imgChrome" Source="/TurnOut.NET;component/src/chrome.png" Stretch="Fill" VerticalAlignment="Top" Width="128" Cursor="Hand" MouseLeftButtonUp="IconsMouseLeftButtonUp" Tag="002" MouseEnter="imgFirefox_MouseEnter" MouseLeave="imgFirefox_MouseLeave" />
+        <Image Height="128" HorizontalAlignment="Left" Margin="401,31,0,0" Name="imgIE" Source="/TurnOut.NET;component/src/IE.png" Stretch="Fill" VerticalAlignment="Top" Width="128" Cursor="Hand" MouseLeftButtonUp="IconsMouseLeftButtonUp" Tag="003" MouseEnter="imgFirefox_MouseEnter" MouseLeave="imgFirefox_MouseLeave" />
+        <TextBox Height="20" HorizontalAlignment="Center" Margin="23,162,38,40" Name="txtUrl" VerticalAlignment="Center" Width="536" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="White" IsReadOnly="True" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"></TextBox>
+        <Image Height="20" HorizontalAlignment="Left" Margin="558,15,0,0" Name="imgSettings" Stretch="None" VerticalAlignment="Top" Width="20" Source="/TurnOut.NET;component/src/cx_settings.png" Cursor="Hand" MouseLeftButtonUp="imgSettings_MouseLeftButtonUp" Panel.ZIndex="1000" MouseEnter="imgFirefox_MouseEnter" MouseLeave="imgFirefox_MouseLeave" />
+    </Grid>
+</Window>
