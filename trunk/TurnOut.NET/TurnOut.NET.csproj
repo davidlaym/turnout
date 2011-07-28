@@ -185,6 +185,9 @@
   <PropertyGroup>
     <PostBuildEvent>cd "$(ProjectDir)" &amp;&amp; "$(programfiles)\doxygen\bin\doxygen.exe" "$(ProjectDir)\doc\doc.doxy"</PostBuildEvent>
   </PropertyGroup>
+  <PropertyGroup>
+    <PreBuildEvent>"$(ProjectDir)versionupdate.exe"  --project-path='$(ProjectDir)' --wix-file='$(SolutionDir)Setup\Product.wxs'</PreBuildEvent>
+  </PropertyGroup>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">
