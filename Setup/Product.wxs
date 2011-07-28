@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Wix xmlns="http://schemas.microsoft.com/wix/2006/wi">
+  <?define ProductName = "TurnOut.NET"?>
+  <?define ProductVersion = "1.0.0.1"?>
+  <?define Manufacturer = "www.daemonized.de"?>
+  <?define ProgID = "Daemonized.TurnOut.Url"?>
+
+  <?define SourcePath = "..\TurnOut.NET\bin\Release"?>
+<!--  <?define ProductCode = "10ed8162-f4ba-445e-8d9b-dcec717a74ca"?>{5FA7409C-76BA-482B-AA70-6953C5FAFABF}-->
+  <?define ProductCode = "{94F9D973-C079-4569-BB4D-FFFCFC93C9C9}"?>
+  <?define UpgradeCode = "{43805536-46DA-4021-AEE8-72F3B155FDB1}"?>
+  <?define PackageCode = "{????????-????-????-????-????????????}"?>
+
+  <Product
+    Id="$(var.ProductCode)"
+    UpgradeCode="$(var.UpgradeCode)"
+    Name="$(var.ProductName)"
+    Language="1033"
+    Version="$(var.ProductVersion)"
+    Manufacturer="$(var.Manufacturer)">
+    
+    <Package Id="$(var.PackageCode)" InstallPrivileges="elevated" InstallScope="perMachine" Platform="x86" Description="$(var.ProductName)" InstallerVersion="200" Compressed="yes" />
+    <!--<MajorUpgrade AllowDowngrades="no" Disallow="no" MigrateFeatures="yes" DowngradeErrorMessage="No Downgrades possible!" />-->
+    <Condition Message='You need to be an administrator to install this product.'>Privileged</Condition>
+    <CustomAction Id="SaveTargetDir" Property="ARPINSTALLLOCATION" Value="[INSTALLDIR]" />
+
+    <Media Id="1" Cabinet="media.cab" EmbedCab="yes" CompressionLevel="high" VolumeLabel="Media" />
+
+    <Upgrade Id="$(var.UpgradeCode)">
+      <UpgradeVersion Minimum="$(var.ProductVersion)"
+                      IncludeMinimum="no"
+                      OnlyDetect="yes"
+                      Language="1033"
+                      Property="NEWPRODUCTFOUND" />
+      <UpgradeVersion Minimum="0.0.0.0"
+                      IncludeMinimum="no"
+                      Maximum="$(var.ProductVersion)"
+                      IncludeMaximum="no"
+                      Language="1033"
+                      Property="UPGRADEFOUND" />
+    </Upgrade>
+
+    <Directory Id="TARGETDIR" Name="SourceDir">
+			<Directory Id="ProgramFilesFolder">
+				<Directory Id="INSTALLLOCATION" Name="$(var.ProductName)">
+          <Component Id="MainProgram" Guid="*">
+            <File Checksum="yes" ReadOnly="yes" Id="MainExe" Name="TurnOut.NET.exe" Source="$(var.SourcePath)\TurnOut.NET.exe" Vital="yes"/>
+          </Component>
+          <Component Id="DefaultConfig" Guid="*">
+            <File Checksum="yes" Id="MainConfiguration" Name="TurnOut.NET.exe.config" Source="$(var.SourcePath)\TurnOut.NET.exe.config" Vital="yes"/>
+          </Component>
+          <Component Id="RegistrySettings" Guid="*">
+            <!--Register Application-->
+            <RegistryKey Root="HKLM" Key="SOFTWARE\$(var.Manufacturer)\$(var.ProductName)\Capabilities" Action="createAndRemoveOnUninstall">
+              <RegistryValue Type="string" Name="ApplicationDescription" Value="$(var.ProductName) is a software to choose which browser you want to use to open an url." KeyPath="yes"/>
+              <RegistryValue Type="string" Value="Default Value"/>
+            </RegistryKey>
+            <!--Register Application with .htm* files-->
+            <RegistryKey Root="HKLM" Key="SOFTWARE\$(var.Manufacturer)\$(var.ProductName)\Capabilities\FileAssociations" Action="createAndRemoveOnUninstall">
+              <RegistryValue Name=".htm" Value="$(var.ProgID)" Type="string" />
+              <RegistryValue Name=".html" Value="$(var.ProgID)" Type="string" />
+            </RegistryKey>
+            <!--Register Application with web protocols-->
+            <RegistryKey Root="HKLM" Key="SOFTWARE\$(var.Manufacturer)\$(var.ProductName)\Capabilities\UrlAssociations" Action="createAndRemoveOnUninstall">
+              <RegistryValue Name="ftp" Value="$(var.ProgID)" Type="string" />
+              <RegistryValue Name="http" Value="$(var.ProgID)" Type="string" />
+              <RegistryValue Name="https" Value="$(var.ProgID)" Type="string" />
+            </RegistryKey>
+
+            <!--Set app as default browser-->
+            <RegistryValue Root="HKCR" Key="http\shell\open\command" Value="[INSTALLLOCATION]TurnOut.NET.exe %1" Type="string" />
+            <RegistryValue Root="HKCR" Key="https\shell\open\command" Value="[INSTALLLOCATION]TurnOut.NET.exe %1" Type="string" />
+            <RegistryValue Root="HKCR" Key="ftp\shell\open\command" Value="[INSTALLLOCATION]TurnOut.NET.exe %1" Type="string" />
+            <RemoveRegistryKey Root="HKCR" Key="http\shell\open\ddeexec" Action="removeOnInstall" />
+            <RemoveRegistryKey Root="HKCR" Key="https\shell\open\ddeexec" Action="removeOnInstall" />
+            <RemoveRegistryKey Root="HKCR" Key="ftp\shell\open\ddeexec" Action="removeOnInstall" />
+          </Component>
+          </Directory>
+			</Directory>
+      <Directory Id="ProgramMenuFolder">
+        <Directory Id="ProgramMenuDir" Name="TurnOut.NET">
+
+          <Component Id='ProgramMenuDir' Guid="*">
+            <Shortcut Id="UninstallProduct" Name="Uninstall $(var.ProductName)" Description="Removes $(var.ProductName) from your pc" Target="[System64Folder]msiexec.exe" Arguments="/x [ProductCode]"/>
+            <RemoveFolder Id="ProgramMenuDir" On="uninstall"/>
+            <RegistryValue Root="HKCU" Key="Software\$(var.Manufacturer)\$(var.ProductName)" Name="installed" Type="integer" Value="1" KeyPath="yes"/>
+          </Component>
+
+        </Directory>
+      </Directory>
+		</Directory>
+
+    <Icon Id="app.icon" SourceFile="app.ico" />
+    <Property Id="ARPPRODUCTICON" Value="app.icon" />
+    
+    <Feature Id="MainProduct" Title="$(var.ProductName)" Absent="disallow" AllowAdvertise="no" Description="Install the main application (version: $(var.ProductVersion)). This is required!" Level="1" ConfigurableDirectory="INSTALLLOCATION" Display="expand">
+      <ComponentRef Id="MainProgram" />
+      <ComponentRef Id="DefaultConfig" />
+      <ComponentRef Id="ProgramMenuDir" />
+      <ComponentGroupRef Id="Product.Generated" />
+
+      <Feature Id="RegistrySettings" Title="Change registry settings" AllowAdvertise="no" Description="This feature changes your registry settings to use $(var.ProductName) as default browser." Level="1">
+        <ComponentRef Id="RegistrySettings" />
+
+      </Feature>
+    </Feature>
+
+    <!-- Prevent downgrading -->
+    <CustomAction Id="PreventDowngrading" Error="Newer version of this application is already installed. Exiting installer!" />
+
+    <!-- Sequences -->
+    <InstallExecuteSequence>
+      <Custom Action="PreventDowngrading" After="FindRelatedProducts">NEWPRODUCTFOUND</Custom>
+      <RemoveExistingProducts After="InstallFinalize" />
+    </InstallExecuteSequence>
+
+    <InstallUISequence>
+      <Custom Action="PreventDowngrading" After="FindRelatedProducts">NEWPRODUCTFOUND</Custom>
+    </InstallUISequence>
+    
+    <WixVariable Id="WixUIBannerBmp" Value="banner.bmp" />
+    <WixVariable Id="WixUIDialogBmp" Value="dlg.bmp" />
+    <WixVariable Id="WixUILicenseRtf" Value="license.rtf" />
+
+    <Property Id="WIXUI_INSTALLDIR" Value="INSTALLLOCATION" />
+    <UIRef Id="WixUI_FeatureTree" />
+
+    <InstallExecuteSequence>
+      <Custom Action="SaveTargetDir" After="InstallValidate">
+        NOT
+        Installed
+      </Custom>
+    </InstallExecuteSequence>
+
+  </Product>
+</Wix>
