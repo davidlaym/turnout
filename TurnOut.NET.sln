@@ -1,0 +1,29 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2010
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TurnOut.NET", "TurnOut.NET\TurnOut.NET.csproj", "{011C4B45-3320-425B-A9C0-0D11EC6B6B31}"
+EndProject
+Project("{930C7802-8A8C-48F9-8165-68863BCCD9DD}") = "Setup", "Setup\Setup.wixproj", "{695A3EAA-09AA-491E-821D-ADEE2A798869}"
+	ProjectSection(ProjectDependencies) = postProject
+		{011C4B45-3320-425B-A9C0-0D11EC6B6B31} = {011C4B45-3320-425B-A9C0-0D11EC6B6B31}
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|x86 = Debug|x86
+		Release|x86 = Release|x86
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{011C4B45-3320-425B-A9C0-0D11EC6B6B31}.Debug|x86.ActiveCfg = Debug|x86
+		{011C4B45-3320-425B-A9C0-0D11EC6B6B31}.Debug|x86.Build.0 = Debug|x86
+		{011C4B45-3320-425B-A9C0-0D11EC6B6B31}.Release|x86.ActiveCfg = Release|x86
+		{011C4B45-3320-425B-A9C0-0D11EC6B6B31}.Release|x86.Build.0 = Release|x86
+		{695A3EAA-09AA-491E-821D-ADEE2A798869}.Debug|x86.ActiveCfg = Debug|x86
+		{695A3EAA-09AA-491E-821D-ADEE2A798869}.Debug|x86.Build.0 = Debug|x86
+		{695A3EAA-09AA-491E-821D-ADEE2A798869}.Release|x86.ActiveCfg = Release|x86
+		{695A3EAA-09AA-491E-821D-ADEE2A798869}.Release|x86.Build.0 = Release|x86
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

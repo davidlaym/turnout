@@ -1,0 +1,18 @@
+﻿<?xml version='1.0' encoding='utf-8'?>
+<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="TurnOut.NET.Properties" GeneratedClassName="Settings">
+  <Profiles />
+  <Settings>
+    <Setting Name="browser1" Type="System.String" Scope="User">
+      <Value Profile="(Default)">%programfiles%\Mozilla Firefox\firefox.exe</Value>
+    </Setting>
+    <Setting Name="browser2" Type="System.String" Scope="User">
+      <Value Profile="(Default)">%programfiles%\SRWare Iron\iron.exe</Value>
+    </Setting>
+    <Setting Name="browser3" Type="System.String" Scope="User">
+      <Value Profile="(Default)">%programfiles%\Internet Explorer\iexplore.exe</Value>
+    </Setting>
+    <Setting Name="AlwaysOnTop" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">True</Value>
+    </Setting>
+  </Settings>
+</SettingsFile>
