@@ -168,7 +168,8 @@ namespace Daemonized.TurnOut
         {
             try
             {
-                Process.Start(_browsers[Browser].Path.FullName, string.Format("\"{0}\"", _browsers[Browser].Arguments));
+                Process.Start(_browsers[Browser].Path.FullName,
+                    string.Format("\"{0}\"", _browsers[Browser].Arguments));
                 this.WindowState = System.Windows.WindowState.Minimized; 
                 
                 return true;
