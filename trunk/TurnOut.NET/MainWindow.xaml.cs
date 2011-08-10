@@ -62,15 +62,13 @@ namespace Daemonized.TurnOut
             _ni.DoubleClick +=
                 delegate(object sender, EventArgs args)
                 {
-                    this.Show();
-                    this.WindowState = WindowState.Normal;
+                    BringToFront();
                 };
             //Close on rightclick
             _ni.MouseClick +=
                 delegate(object sender, System.Windows.Forms.MouseEventArgs args)
                 {
-                    this.Show();
-                    this.WindowState = WindowState.Normal;
+                    BringToFront();
                 };
 
             _browsers.Add("001",
@@ -82,6 +80,20 @@ namespace Daemonized.TurnOut
             _browsers.Add("003",
                 new Browser(Properties.Settings.Default.browser3.Replace("%programfiles%", ProgramFilesx86()),
                     Properties.Resources.IE));
+        }
+
+        private void BringToFront()
+        {
+            if (this.IsVisible || this.IsFocused)
+            {
+                this.WindowState = WindowState.Minimized;
+            }
+            else
+            {
+                this.Show();
+                this.WindowState = WindowState.Normal;
+                this.Activate();
+            }
         }
 
         public bool IsSingle()
@@ -156,7 +168,7 @@ namespace Daemonized.TurnOut
         {
             try
             {
-                Process.Start(_browsers[Browser].Path.FullName, _browsers[Browser].Arguments);
+                Process.Start(_browsers[Browser].Path.FullName, string.Format("\"{0}\"", _browsers[Browser].Arguments));
                 this.WindowState = System.Windows.WindowState.Minimized; 
                 
                 return true;
